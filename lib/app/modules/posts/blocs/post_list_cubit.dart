@@ -41,10 +41,12 @@ class PostListCubit extends Cubit<PostListState> {
     final result = await getPostsUseCase().run();
     result.fold(
       (failure) {
-        emit(state.copyWith(
-          status: PostListStateStatus.error,
-          error: failure.toString(),
-        ));
+        emit(
+          state.copyWith(
+            status: PostListStateStatus.error,
+            error: failure.toString(),
+          ),
+        );
       },
       (posts) {
         emit(
